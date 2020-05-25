@@ -1,0 +1,28 @@
+  .card-deck .card {
+    min-width: 220px;
+  }
+
+  .pet-pic{
+    border-radius: 50%; 
+    transition: .5s transform;
+    width: 100%;
+    border: solid 3px #eee;
+    box-shadow: #eee 1px 0px 15px 2px; 
+  }
+  .pet-desc{
+    text-overflow: ellipsis; 
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  .pet-tag{
+    background: #2d8cf0;
+    padding:3px 6px;
+    margin-left: 3px;
+    border-radius: 6px;
+    color: #fff;
+}
+.pet-price{
+  font-weight: bold;
+  margin-right: 30px;
+  color:#c30;
+}
