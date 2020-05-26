@@ -16,4 +16,6 @@ public class CustomerService {
 	public List<Map<String, Object>> getPetById(String id){
 		return customerDao.getPetById(id);
 	}
+
+	public List<Map<String,Object>> checkLogin(String email,String pwd){return customerDao.checkLogin(email,pwd);}
 }

@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.catalina.filters.AddDefaultCharsetFilter;
+
 
 import com.alibaba.fastjson.JSON;
 import com.petstore.dto.ShoppingCart;
@@ -37,17 +37,17 @@ public class CartServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ShoppingCartService shoppingCartService=new ShoppingCartService();
 		ShoppingCart cart;
-		//´ÓsessionÖĞÈ¡¹ºÎï³µ¶ÔÏócart
-		//Èç¹ûcartÎªnull;µÚÒ»´ÎÇëÇó£¬ĞÂ½¨Ò»¸ö¹ºÎï³µ¶ÔÏó
+		//ä»sessionä¸­å–è´­ç‰©è½¦å¯¹è±¡cart
+		//å¦‚æœcartä¸ºnull;ç¬¬ä¸€æ¬¡è¯·æ±‚ï¼Œæ–°å»ºä¸€ä¸ªè´­ç‰©è½¦å¯¹è±¡
 		if(request.getSession().getAttribute("cart")==null) {
 			cart=new ShoppingCart();
 			request.getSession().setAttribute("cart", cart);
 		}else {
 			cart=(ShoppingCart)request.getSession().getAttribute("cart");
 		}
-		
-		//»ñÈ¡ÇëÇóÀàĞÍget/add/remove/modify
-		//Ä¬ÈÏÎª"get"
+
+		//è·å–è¯·æ±‚ç±»å‹get/add/remove/modify
+		//é»˜è®¤ä¸º"get"
 		String type="get";
 		if(request.getParameter("type")!=null) {
 			type=request.getParameter("type");
@@ -62,29 +62,29 @@ public class CartServlet extends HttpServlet {
 	        break;
 	        case "add":
 	    		if(id==null) {
-	    			result.setMsg("ÉÌÆ·id²ÎÊı²»ÕıÈ·!");
+	    			result.setMsg("å•†å“idå‚æ•°ä¸æ­£ç¡®!");
 	    			result.setSuccess(false);
 	    		}
 	    		if(quantity==null) {
-	    			result.setMsg("ÉÌÆ·ÊıÁ¿²ÎÊı²»ÕıÈ·!");
+	    			result.setMsg("å•†å“æ•°é‡å‚æ•°ä¸æ­£ç¡®!");
 	    			result.setSuccess(false);
 	    		}
 	    		if(result.getSuccess()==true) {
-	    			//µ÷ÓÃShoppingCartService,´¦ÀíÒµÎñ
+					//è°ƒç”¨ShoppingCartService,å¤„ç†ä¸šåŠ¡
 	    			cart=shoppingCartService.addToCart(Integer.parseInt(id),Integer.parseInt(quantity),cart);
-	    			result.setMsg("¼ÓÈë¹ºÎï³µÍê³É!");
+	    			result.setMsg("åŠ å…¥è´­ç‰©è½¦å®Œæˆ!");
 	    			result.setMsg2(Integer.toString(cart.getTotalCount()));
 	    		}
 			 break;
 			case "remove":
 			if(id==null) {
-				result.setMsg("ÉÌÆ·id²ÎÊı²»ÕıÈ·!");
+				result.setMsg("å•†å“idå‚æ•°ä¸æ­£ç¡®!");
 				result.setSuccess(false);
 			}
 			if(result.getSuccess()==true) {
-				//µ÷ÓÃShoppingCartService,´¦ÀíÒµÎñ
+				//è°ƒç”¨ShoppingCartService,å¤„ç†ä¸šåŠ¡
 				cart=shoppingCartService.removeFromCart(Integer.parseInt(id), cart);
-				result.setMsg("É¾³ıÉÌÆ·Íê³É!");
+				result.setMsg("åˆ é™¤å•†å“å®Œæˆ!");
 				result.setMsg2(Integer.toString(cart.getTotalCount()));
 				result.setMsg3(Double.toString(cart.getTotalMoney()));
 			}
@@ -93,7 +93,7 @@ public class CartServlet extends HttpServlet {
 				int quantityInt=Integer.parseInt(quantity);
 				int idInt=Integer.parseInt(id);
 			if(quantityInt<=0) {
-				result.setMsg("ÉÌÆ·ÊıÄ¿²»µÃĞ¡ÓÚµÈÓÚ0¼ş£¡");
+				result.setMsg("å•†å“æ•°ç›®ä¸å¾—å°äºç­‰äº0ä»¶ï¼");
 				result.setSuccess(false);
 			}
 			if(result.getSuccess()==true) {
@@ -104,9 +104,9 @@ public class CartServlet extends HttpServlet {
 	     }
 			 break;
 	    }
-		
-		
-		//Êä³öJson
+
+
+		//è¾“å‡ºJson
 		response.setContentType("text/json;charset=UTF-8");
 		response.setCharacterEncoding("UTF-8");
 	

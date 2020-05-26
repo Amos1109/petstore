@@ -38,15 +38,7 @@
     <jsp:include page="footer.jsp"></jsp:include>
     
     			<script type="text/javascript">
-    			
-    			 toastr.options = { // toastr配置
-    				        "closeButton": true, //是否显示关闭按钮
-    				        "debug": false, //是否使用debug模式
-    				        "progressBar": true, //是否显示进度条，当为false时候不显示；当为true时候，显示进度条，当进度条缩短到0时候，消息通知弹窗消失
-    				        "positionClass": "toast-top-center",//显示的动画时间
-    				        "showDuration": "200", //显示的动画时间
-    				        "hideDuration": "500", //消失的动画时间
-    				    }
+
 
 
 $(function() {

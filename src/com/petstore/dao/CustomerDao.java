@@ -22,4 +22,10 @@ public class CustomerDao extends BaseDao{
 		Object param[]= {id};
 		return select(sql, param);
 	}
+
+	public List<Map<String,Object>> checkLogin(String email,String pwd){
+		String sql="select * from customer where email= ? and pwd = ?";
+		Object param[]={email,pwd};
+		return select(sql,param);
+	}
 }
