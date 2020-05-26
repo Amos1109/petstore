@@ -12,6 +12,9 @@
     /* box-shadow: 0 0.125rem 0.8rem rgba(0, 0, 0, 0.1); */
     -webkit-transition: all 0.2s;
     transition: all 0.2s;
+    float: left;
+    margin-left: 5px;
+    margin-right: 15px;
 }
 
 .sidebar.shrink {
@@ -1141,6 +1144,7 @@ code {
     -webkit-box-shadow: 0 0.125rem 0.8rem rgba(0, 0, 0, 0.1);
     box-shadow: 0 0.125rem 0.8rem rgba(0, 0, 0, 0.1);
     border-radius: 1rem;
+
 }
 
 .card > .list-group:first-child .list-group-item:first-child {
@@ -1155,6 +1159,7 @@ code {
 
 .card-body {
     padding: 2rem;
+    height: 530px;
 }
 
 .card-title {
