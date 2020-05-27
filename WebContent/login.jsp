@@ -35,10 +35,10 @@
 
 <jsp:include page="footer.jsp"></jsp:include>
 
-<script script type="text/JavaScript">
+<script type="text/javascript">
     var msg = '${logMsg}';
     if(msg!= ''){
-        toastr.error("密码错误！");
+        toastr.error("用户名或密码错误！");
     }
 </script>
 </body>
