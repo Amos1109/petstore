@@ -28,4 +28,9 @@ public class CustomerDao extends BaseDao{
 		Object param[]={email,pwd};
 		return select(sql,param);
 	}
+
+	public boolean recharge(String email,double Money){
+		String sql="update customer set balance=balance + ? where email= ?";
+		return true;
+	}
 }

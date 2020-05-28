@@ -48,9 +48,34 @@
     <div class="card-body">
         <div>
         <img src="http://pic2.zhimg.com/50/v2-be54dda1c19aaeab4f90bcb699057d03_hd.jpg" style="max-width: 3rem" class="rounded-circle mx-3 my-2 my-lg-0" style="display: inline-block">
-        <h6 class="mb-0" style="display: inline-block">Amos Hong</h6>
+        <h6 class="mb-0" style="display: inline-block">AmosHong</h6>
         </div>
-        <p class="text-gray">对不起，这里我还没写。</p>
+        <form style="width: 100%;max-width:300px;margin-top: 20px">
+            <div class="form-group">
+                <label class="form-control-label text-uppercase">Email</label>
+                <input type="email" value="824203764@qq.com" class="form-control">
+            </div>
+            <div class="form-group">
+                <label class="form-control-label text-uppercase">昵称</label>
+                <input type="text" value="AmosHong" class="form-control">
+                <small class="form-text text-muted ml-3">*与业务或卖家品牌冲突的昵称，将有可能收回。</small>
+            </div>
+            <div class="form-group">
+                <label class="form-control-label text-uppercase">性别</label><br/>
+                <label class="radio-inline">
+                    <input type="radio"  value="male" name="sex" checked>男
+                </label> &nbsp;&nbsp;&nbsp;
+                <label class="radio-inline">
+                    <input type="radio"  value="female" name="sex">女
+                </label>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary" style="display:block;margin:0 auto">保存</button>
+            </div>
+        </form>
+        <div>
+            <img src="">
+        </div>
     </div>
 </div>
 <jsp:include page="footer.jsp"></jsp:include>

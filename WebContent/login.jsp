@@ -38,7 +38,7 @@
 <script type="text/javascript">
     var msg = '${logMsg}';
     if(msg!= ''){
-        toastr.error("用户名或密码错误！");
+        toastr.error(msg);
     }
 </script>
 </body>

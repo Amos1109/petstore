@@ -24,7 +24,7 @@ public class CustomerServlet extends HttpServlet {
         CustomerService customerService=
                 new CustomerService();
         if(customerService.checkLogin(email,pwd).isEmpty()){
-            request.setAttribute("logMsg", "ç”¨æˆ·åæˆ–å¯†ç é”™è¯¯ï¼");
+            request.setAttribute("logMsg", "ÓÃ»§Ãû»òÃÜÂë´íÎó£¡");
             request.getRequestDispatcher("login.jsp").forward(request,response);
         }else{
             Map<String, Object> user=

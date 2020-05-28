@@ -13,8 +13,8 @@
     -webkit-transition: all 0.2s;
     transition: all 0.2s;
     float: left;
-    margin-left: 5px;
-    margin-right: 15px;
+    margin-left: 200px;
+    margin-right: 170px;
 }
 
 .sidebar.shrink {
@@ -1144,7 +1144,7 @@ code {
     -webkit-box-shadow: 0 0.125rem 0.8rem rgba(0, 0, 0, 0.1);
     box-shadow: 0 0.125rem 0.8rem rgba(0, 0, 0, 0.1);
     border-radius: 1rem;
-
+    width: 800px;
 }
 
 .card > .list-group:first-child .list-group-item:first-child {
