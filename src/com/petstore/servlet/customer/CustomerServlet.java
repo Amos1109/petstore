@@ -1,5 +1,6 @@
 package com.petstore.servlet.customer;
 
+import com.petstore.dto.CustomerDTO;
 import com.petstore.service.CustomerService;
 
 import javax.servlet.ServletException;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -28,12 +30,20 @@ public class CustomerServlet extends HttpServlet {
             request.setAttribute("logMsg", "用户名或密码错误！");
             request.getRequestDispatcher("login.jsp").forward(request,response);
         }else{
-            Map<String, Object> user=
-                    users.get(0);
-            request.getSession().setAttribute("user",user);
+            Map<String, Object> user= users.get(0);
+            request.getSession().setAttribute("user",getCustomByMap(user));
             response.sendRedirect(request.getContextPath()+"/index");
         }
 
 
+    }
+
+    private CustomerDTO getCustomByMap(Map<String , Object> map){
+        CustomerDTO customer = new CustomerDTO();
+        customer.setBalance(((BigDecimal)map.get("balance")).doubleValue());
+        customer.setName((String) map.get("name"));
+        customer.setId((long)map.get("id"));
+        customer.setEmail((String)map.get("email"));
+        return customer;
     }
 }

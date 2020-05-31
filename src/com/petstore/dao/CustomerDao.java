@@ -39,9 +39,22 @@ public class CustomerDao extends BaseDao{
 		return select(sql2,param2);
 	}
 
-	public List<Map<String,Object>> paging(String nextPage){
-		String sql="select * from pet where is_offsale = 0 order by id limit ?,3";
-		Object param[]={nextPage};
-		return select(sql,param);
+	public int addOrder(long cid,String money){
+		String sql="insert into order values(null,?,?,?,now())";
+		Object param[]={cid,money,"0"};
+		String sql1="select LAST_INSERT_ID() from order";
+		return  getLastId(sql,sql1,param);
+	}
+
+	public boolean addOrderDetail(int oid,int pid,String price,int quantity){
+		String sql="insert into orderdetail values(null,?,?,?,?)";
+		Object param[]={oid,pid,price,quantity};
+		return updateByParams(sql,param);
+	}
+
+	public List<Map<String,Object>> getOrderListByCId(String cid){
+		String sql="select * from pet where is_offsale = 0 and cid=?";
+		Object param[]= {cid};
+		return select(sql, param);
 	}
 }

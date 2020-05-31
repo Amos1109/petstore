@@ -51,7 +51,7 @@
 			</div> 
 			<div class="card-footer">            
 				<div class="pull-left" >总计: ¥ <span id="totalMoney">${cart.totalMoney }</span></div>
-				<button class="btn btn-warning  pull-right">立即结算</button>
+				<a class="btn btn-warning  pull-right" href="order">立即结算</a>
 			</div>
 		  </div>
     </div>

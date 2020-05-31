@@ -2,8 +2,8 @@
   <library name="lib">
     <CLASSES>
       <root url="file://$PROJECT_DIR$/WebContent/WEB-INF/lib" />
-      <root url="jar://C:/apache-tomcat-9.0.30/lib/jsp-api.jar!/" />
-      <root url="jar://C:/apache-tomcat-9.0.30/lib/servlet-api.jar!/" />
+      <root url="jar://C:/apache-tomcat-9.0.35/lib/servlet-api.jar!/" />
+      <root url="jar://C:/apache-tomcat-9.0.35/lib/jsp-api.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
