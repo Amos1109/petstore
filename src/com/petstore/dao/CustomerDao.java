@@ -40,9 +40,9 @@ public class CustomerDao extends BaseDao{
 	}
 
 	public int addOrder(long cid,String money){
-		String sql="insert into order values(null,?,?,?,now())";
+		String sql="insert into `order` values(null,?,?,?,now())";
 		Object param[]={cid,money,"0"};
-		String sql1="select LAST_INSERT_ID() from order";
+		String sql1="select LAST_INSERT_ID() from `order`";
 		return  getLastId(sql,sql1,param);
 	}
 
