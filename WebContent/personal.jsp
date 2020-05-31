@@ -1,4 +1,5 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+         pageEncoding="utf-8"%>
 <html>
 <head>
     <jsp:include page="head.jsp"></jsp:include>
@@ -18,16 +19,16 @@
 <div id="sidebar" class="sidebar py-3">
     <div class="text-gray-400 text-uppercase px-3 px-lg-4 py-4 font-weight-bold small headings-font-family">USER CENTER</div>
     <ul class="sidebar-menu list-unstyled">
-        <li class="sidebar-list-item"><a href="index.html" class="sidebar-link text-muted active"><i class="o-home-1 mr-3 text-gray"></i><span>个人信息</span></a></li>
+        <li class="sidebar-list-item"><a href="personal.jsp" class="sidebar-link text-muted"><i class="o-home-1 mr-3 text-gray  active" ></i><span>个人信息</span></a></li>
         <li class="sidebar-list-item"><a href="charts.html" class="sidebar-link text-muted"><i class="o-survey-1 mr-3 text-gray"></i><span>我的订单</span></a></li>
         <li class="sidebar-list-item"><a href="tables.html" class="sidebar-link text-muted"><i class="o-diploma-1 mr-3 text-gray"></i><span>超级会员</span></a></li>
         <li class="sidebar-list-item"><a href="forms.html" class="sidebar-link text-muted"><i class="o-document-1 mr-3 text-gray"></i><span>我的收藏</span></a></li>
-        <li class="sidebar-list-item"><a href="#" data-toggle="collapse" data-target="#pages" aria-expanded="false" aria-controls="pages" class="sidebar-link text-muted"><i class="o-database-1 mr-3 text-gray"></i><span>我的钱包</span></a>
-
+        <li class="sidebar-list-item">
+            <a href="#" data-toggle="collapse" data-target="#pages" aria-expanded="true" aria-controls="pages" class="sidebar-link text-muted"><i class="o-database-1 mr-3 text-gray"></i><span>我的钱包</span></a>
             <div id="pages" class="collapse">
                 <ul class="sidebar-menu list-unstyled border-left border-primary border-thick">
-                    <li class="sidebar-list-item"><a href="#" class="sidebar-link text-muted pl-lg-5">余额查询</a></li>
-                    <li class="sidebar-list-item"><a href="#" class="sidebar-link text-muted pl-lg-5">账户充值</a></li>
+                    <li class="sidebar-list-item"><a href="balance.jsp" class="sidebar-link text-muted pl-lg-5">余额查询</a></li>
+                    <li class="sidebar-list-item"><a href="recharge.jsp" class="sidebar-link text-muted pl-lg-5">账户充值</a></li>
                     <li class="sidebar-list-item"><a href="#" class="sidebar-link text-muted pl-lg-5">绑定银行卡</a></li>
                 </ul>
             </div>
@@ -41,6 +42,7 @@
         <li class="sidebar-list-item"><a href="#" class="sidebar-link text-muted"><i class="o-wireframe-1 mr-3 text-gray"></i><span>发现更多</span></a></li>
     </ul>
 </div>
+
 <div class="card">
     <div class="card-header">
         <h2 class="h6 text-uppercase mb-0">个人信息</h2>

@@ -29,8 +29,19 @@ public class CustomerDao extends BaseDao{
 		return select(sql,param);
 	}
 
-	public boolean recharge(String email,double Money){
+	public List<Map<String,Object>> recharge(String email,double Money){
 		String sql="update customer set balance=balance + ? where email= ?";
-		return true;
+		Object param[]={Money,email};
+		//update(sql,param);
+		updateByParams(sql,param);
+		String sql2="select * from customer where email= ?";
+		Object param2[]={email};
+		return select(sql2,param2);
+	}
+
+	public List<Map<String,Object>> paging(String nextPage){
+		String sql="select * from pet where is_offsale = 0 order by id limit ?,3";
+		Object param[]={nextPage};
+		return select(sql,param);
 	}
 }

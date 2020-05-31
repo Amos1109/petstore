@@ -35,7 +35,8 @@
 
 
 
-$(function() {
+
+    $(function() {
 	$(".addToCart").click(function(){
 		 var id=$(this).parents(".shop").data("id");
 		$.ajax({

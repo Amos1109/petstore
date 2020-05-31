@@ -19,5 +19,5 @@ public class CustomerService {
 
 	public List<Map<String,Object>> checkLogin(String email,String pwd){return customerDao.checkLogin(email,pwd);}
 
-	public Boolean recharge(String email,double money){return customerDao.recharge(email,money);}
+	public List<Map<String,Object>> recharge(String email,double money){return customerDao.recharge(email,money);}
 }

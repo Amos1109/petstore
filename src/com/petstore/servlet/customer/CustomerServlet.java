@@ -23,12 +23,13 @@ public class CustomerServlet extends HttpServlet {
         String pwd=request.getParameter("inputPassword");
         CustomerService customerService=
                 new CustomerService();
-        if(customerService.checkLogin(email,pwd).isEmpty()){
+        List<Map<String,Object>> users=customerService.checkLogin(email,pwd);
+        if(users.isEmpty()){
             request.setAttribute("logMsg", "用户名或密码错误！");
             request.getRequestDispatcher("login.jsp").forward(request,response);
         }else{
             Map<String, Object> user=
-                    customerService.checkLogin(email,pwd).get(0);
+                    users.get(0);
             request.getSession().setAttribute("user",user);
             response.sendRedirect(request.getContextPath()+"/index");
         }

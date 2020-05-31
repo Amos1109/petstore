@@ -27,7 +27,41 @@
                 </div>
             </div>
           </c:forEach>
+
         </div>
+        <div style="text-align: center">
+            <ul id="page"></ul>
+        </div>
+
+        <script type="text/javascript">
+            var totalpages=10;
+            var searchForm=1;
+            var currentPage =5;
+            $(function(){
+                var options={
+                    bootstrapMajorVersion:3,    //版本
+                    currentPage:currentPage,    //当前页数
+                    numberOfPages:5,    //最多显示Page页
+                    totalPages:totalpages,    //所有数据可以显示的页数
+                    pageUrl: function(type, page, current){
+                        switch (type) {
+                            case "first": return "首页";
+                            case "prev": return "上一页";
+                            case "next": return "下一页";
+                            case "last": return "末页";
+                            case "page": return page;
+                        }
+                        if (page==current) {
+                            return "javascript:void(0)";
+                        } else {
+                            return "${pageContext.request.contextPath }/navigationSearchFormServlet?currentPage="+page+"&searchForm="+searchForm
+                        }
+                    }
+
+                }
+                $("#page").bootstrapPaginator(options);
+            })
+        </script>
     </div>
     <jsp:include page="footer.jsp"></jsp:include>
     
@@ -35,7 +69,8 @@
 
 
 
-$(function() {
+
+    $(function() {
 	$(".addToCart").click(function(){
 		 var id=$(this).parents(".shop").data("id");
 		$.ajax({

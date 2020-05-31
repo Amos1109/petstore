@@ -1,10 +1,7 @@
 package com.petstore.dao;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
+import org.apache.commons.dbutils.QueryRunner;
+
+import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -93,7 +90,7 @@ public class BaseDao {
 	 * @param sql SQL语句
 	 * @param param SQL语句中的通配符对应的值，如果SQL语句无通配符，该数组为null
 	 */
-	public boolean upadateByParams(String sql, Object param[]) {
+	public boolean updateByParams(String sql, Object param[]) {
 
 		boolean flag = false;
 		Connection con = getConnection();
@@ -228,5 +225,18 @@ public class BaseDao {
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMddHHmmssSSS"); 
 		id=sdf.format(date);
 		return id;
-	}	
+	}
+
+		public static boolean update(String sql,Object[] param){
+			List<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
+		Connection con = getConnection();
+		QueryRunner runner=new QueryRunner();
+		try {
+			runner.update(con,sql,param);
+		}catch (SQLException e){
+			e.printStackTrace();
+		}
+
+		return true;
+	}
 }
