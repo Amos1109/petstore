@@ -1,6 +1,7 @@
 package com.petstore.dto;
 
 import java.util.Date;
+import java.util.Map;
 
 public class PetDTO {
 	private long id;
@@ -15,9 +16,41 @@ public class PetDTO {
 	private int score;
 	private boolean offsale;
 	private Date onSaleTime;
-	
+
+	public PetDTO(Map<String, Object> map){
+		this.id = (long)map.get("id");
+		this.c_id = (int)map.get("c_id");
+		this.name = (String) map.get("name");
+		this.tag = (String) map.get("tag");
+		this.img = (String)map.get("img");
+		this.price = Double.parseDouble(map.get("price").toString());
+		this.stock = (int)map.get("stock");
+		this.description = (String)map.get("description");
+		this.weight = (int)map.get("weight");
+		this.score = (int)map.get("score");
+		this.offsale = (boolean)map.get("is_offsale");
+		this.onSaleTime = (Date) map.get("onSaleTime");
+
+	}
+
+	public PetDTO(long id, int c_id, String name, String tag, String img, double price, int stock, String description, int weight, int score, boolean offsale, Date onSaleTime) {
+		super();
+		this.id = id;
+		this.c_id = c_id;
+		this.name = name;
+		this.tag = tag;
+		this.img = img;
+		this.price = price;
+		this.stock = stock;
+		this.description = description;
+		this.weight = weight;
+		this.score = score;
+		this.offsale = offsale;
+		this.onSaleTime = onSaleTime;
+	}
+
 	public PetDTO() {
-		
+		super();
 	}
 	public long getId() {
 		return id;

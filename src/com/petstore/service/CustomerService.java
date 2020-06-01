@@ -1,5 +1,6 @@
 package com.petstore.service;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -8,13 +9,12 @@ import com.petstore.dao.CustomerDao;
 import com.petstore.dto.CustomerDTO;
 import com.petstore.dto.PetDTO;
 import com.petstore.dto.ShoppingCart;
+import com.petstore.util.Pager;
 
 public class CustomerService {
 	
 	CustomerDao customerDao=new CustomerDao();
-	public List<Map<String, Object>>getPetListByCId(String cid){
-		return customerDao.getPetListByCId(cid);
-	}
+	public List<Map<String, Object>>getPetListByCId(String cid){ return customerDao.getPetListByCId(cid); }
 	
 	public List<Map<String, Object>> getPetById(String id){
 		return customerDao.getPetById(id);
@@ -37,4 +37,6 @@ public class CustomerService {
 	public List<Map<String,Object>> getOrderListByCId(String cid){
 		return  customerDao.getOrderListByCId(cid);
 	}
+
+	public Pager<PetDTO> findPet(PetDTO petModel, int pageNum,int pageSize)  { return customerDao.findPet(petModel,pageNum,pageSize); }
 }

@@ -1,7 +1,9 @@
 package com.petstore.servlet.customer;
 
+import com.alibaba.fastjson.JSON;
 import com.petstore.dto.CustomerDTO;
 import com.petstore.service.CustomerService;
+import com.petstore.util.JsonResult;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,26 +16,33 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
-@WebServlet(name = "CustomerServlet", urlPatterns = {"/customer"})
-public class CustomerServlet extends HttpServlet {
+@WebServlet(name = "LoginServlet", urlPatterns = {"/login"})
+public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String email = request.getParameter("inputUserName");
         String pwd = request.getParameter("inputPassword");
         CustomerService customerService = new CustomerService();
         List<Map<String, Object>> users = customerService.checkLogin(email, pwd);
+        JsonResult result=new JsonResult();
         if (users.isEmpty()) {
-            request.setAttribute("logMsg", "用户名或密码错误！");
-            request.getRequestDispatcher("login.jsp").forward(request, response);
+           result.setSuccess(false);
+           result.setMsg("用户名或密码错误！");
         } else {
             Map<String, Object> user = users.get(0);
             request.getSession().setAttribute("user", getCustomByMap(user));
-            response.sendRedirect(request.getContextPath() + "/index");
+            result.setSuccess(true);
         }
-
+        //输出Json
+        response.setContentType("text/json;charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+        String resultJson = JSON.toJSONString(result);
+        out.print(resultJson);
+        out.flush();
+        out.close();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         request.getRequestDispatcher("login.jsp").forward(request, response);
     }
 

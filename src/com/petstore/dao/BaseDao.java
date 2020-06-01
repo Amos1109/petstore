@@ -1,5 +1,6 @@
 package com.petstore.dao;
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import java.sql.*;
 import java.text.SimpleDateFormat;
@@ -227,16 +228,37 @@ public class BaseDao {
 		return id;
 	}
 
-		public static boolean update(String sql,Object[] param){
-			List<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
+	public static List<Map<String, Object>> findResult(String sql, List<?> params)  {
 		Connection con = getConnection();
-		QueryRunner runner=new QueryRunner();
+		PreparedStatement pstmt=null;
+		ResultSet resultSet=null;
+		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+		int index = 1;
 		try {
-			runner.update(con,sql,param);
+			pstmt = con.prepareStatement(sql);
+			if (params != null && !params.isEmpty()) {
+				for (int i = 0; i < params.size(); i++) {
+					pstmt.setObject(index++, params.get(i));
+				}
+			}
+			resultSet = pstmt.executeQuery();
+			ResultSetMetaData metaData = resultSet.getMetaData();
+			int cols_len = metaData.getColumnCount();
+			while (resultSet.next()) {
+				Map<String, Object> map = new HashMap<String, Object>();
+				for (int i = 0; i < cols_len; i++) {
+					String cols_name = metaData.getColumnName(i + 1);
+					Object cols_value = resultSet.getObject(cols_name);
+					if (cols_value == null) {
+						cols_value = "";
+					}
+					map.put(cols_name, cols_value);
+				}
+				list.add(map);
+			}
 		}catch (SQLException e){
 			e.printStackTrace();
 		}
-
-		return true;
+		return list;
 	}
 }

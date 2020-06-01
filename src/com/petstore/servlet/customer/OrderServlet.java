@@ -11,22 +11,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "OrderServlet",urlPatterns = {"/order"})
+@WebServlet(name = "OrderServlet", urlPatterns = {"/order"})
 public class OrderServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ShoppingCart cart=(ShoppingCart) request.getSession().getAttribute("cart");
-        CustomerDTO customer= (CustomerDTO) request.getSession().getAttribute("user");
-        if(customer==null){
+        ShoppingCart cart = (ShoppingCart) request.getSession().getAttribute("cart");
+        CustomerDTO customer = (CustomerDTO) request.getSession().getAttribute("user");
+        if (customer == null) {
             response.sendRedirect("login.jsp");
-        }else{
-            CustomerService customerService=new CustomerService();
-            customerService.addOrder(cart,customer);
-            request.getRequestDispatcher("order.jsp").forward(request,response);
+        } else {
+            CustomerService customerService = new CustomerService();
+            customerService.addOrder(cart, customer);
+            request.getRequestDispatcher("order.jsp").forward(request, response);
         }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doPost(request,response);
+        doPost(request, response);
     }
 
 
