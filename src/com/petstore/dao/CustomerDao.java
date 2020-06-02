@@ -56,11 +56,19 @@ public class CustomerDao extends BaseDao{
 		return updateByParams(sql,param);
 	}
 
-	public List<Map<String,Object>> getOrderListByCId(String cid){
-		String sql="select * from pet where is_offsale = 0 and cid=?";
+	public List<Map<String,Object>> getOrderPetByCId(String cid){
+		String sql="select name,img,orderdetail.price,quantity from `order`,orderdetail,pet where cid=? and `order`.id=orderdetail.oid and orderdetail.pid=pet.id";
 		Object param[]= {cid};
 		return select(sql, param);
 	}
+
+	public List<Map<String,Object>>getOrderListByCId(String cid){
+		String sql="select money,date from `order` where cid=?";
+		Object param[]={cid};
+		return select(sql,param);
+	}
+
+
 
 	public Pager<PetDTO>findPet(PetDTO petModel,int pageNum,int pageSize)  {
 		Pager<PetDTO> result=null;
@@ -89,7 +97,7 @@ public class CustomerDao extends BaseDao{
 		// 使用limit关键字，实现分页
 		sql.append(" limit " + fromIndex + ", " + pageSize );
 
-		// 存放所有查询出的学生对象
+		// 存放所有查询出的宠物对象
 		List<PetDTO> petList = new ArrayList<PetDTO>();
 
 		// 获取总记录数
