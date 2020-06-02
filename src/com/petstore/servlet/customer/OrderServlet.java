@@ -24,7 +24,10 @@ public class OrderServlet extends HttpServlet {
         } else {
             CustomerService customerService = new CustomerService();
             customerService.addOrder(cart, customer);
-            //List<Map<String,Object>> orders=customerService.getOrderListByCId(String.valueOf(customer.getId()));
+            List<Map<String,Object>> orderList=customerService.getOrderPetByCId(String.valueOf(customer.getId()));
+            Map<String,Object>orderTotal=customerService.getOrderListByCId(String.valueOf(customer.getId())).get(0);
+            request.setAttribute("orderList",orderList);
+            request.setAttribute("orderTotal",orderTotal);
             request.getRequestDispatcher("order.jsp").forward(request, response);
         }
     }

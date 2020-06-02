@@ -1,5 +1,6 @@
 package com.petstore.dao;
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.MapListHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import java.sql.*;
@@ -188,6 +189,20 @@ public class BaseDao {
 		}
 		return list;
 	}
+
+	public static List<Map<String, Object>> select2(String sql,Object[] param){
+		Connection con = getConnection();
+		QueryRunner runner = new QueryRunner();
+		List<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
+		try {
+			list =runner.query(con,sql,param,new MapListHandler());
+		}catch (SQLException e){
+			e.printStackTrace();
+		}
+
+		return list;
+	}
+
 	/**
 	 * 获得最后一个id
 	 */

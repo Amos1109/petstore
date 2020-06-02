@@ -29,7 +29,7 @@
                 <ul class="sidebar-menu list-unstyled border-left border-primary border-thick">
                     <li class="sidebar-list-item"><a href="balance.jsp" class="sidebar-link text-muted pl-lg-5 active">余额查询</a></li>
                     <li class="sidebar-list-item"><a href="recharge.jsp" class="sidebar-link text-muted pl-lg-5">账户充值</a></li>
-                    <li class="sidebar-list-item"><a href="#" class="sidebar-link text-muted pl-lg-5">绑定银行卡</a></li>
+                    <li class="sidebar-list-item"><a href="#" class="sidebar-link text-muted pl-lg-5">我的订单</a></li>
                 </ul>
             </div>
         </li>

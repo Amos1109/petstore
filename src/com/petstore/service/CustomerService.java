@@ -15,6 +15,8 @@ public class CustomerService {
 	
 	CustomerDao customerDao=new CustomerDao();
 	public List<Map<String, Object>>getPetListByCId(String cid){ return customerDao.getPetListByCId(cid); }
+
+	public List<Map<String,Object>>getOrderPetByCId(String cid){return customerDao.getOrderPetByCId(cid);}
 	
 	public List<Map<String, Object>> getPetById(String id){
 		return customerDao.getPetById(id);

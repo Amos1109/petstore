@@ -63,9 +63,9 @@ public class CustomerDao extends BaseDao{
 	}
 
 	public List<Map<String,Object>>getOrderListByCId(String cid){
-		String sql="select money,date from `order` where cid=?";
+		String sql="select cid,sum(money) as totalMoney from `order` where cid= ? group by cid;";
 		Object param[]={cid};
-		return select(sql,param);
+		return select2(sql,param);
 	}
 
 
