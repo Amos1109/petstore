@@ -12,16 +12,19 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
-@WebServlet(name = "OrderServlet", urlPatterns = {"/order"})
-public class OrderServlet extends HttpServlet {
+@WebServlet(name = "NewOrderServlet", urlPatterns = {"/neworder"})
+public class NewOrderServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        ShoppingCart cart = (ShoppingCart) request.getSession().getAttribute("cart");
         CustomerDTO customer = (CustomerDTO) request.getSession().getAttribute("user");
         if (customer == null) {
             response.sendRedirect("login.jsp");
         } else {
             CustomerService customerService = new CustomerService();
+            if(cart!=null){
+                customerService.addOrder(cart, customer);
+            }
             List<Map<String,Object>> orderList=customerService.getOrderPetByCId(String.valueOf(customer.getId()));
             Map<String,Object>orderTotal=customerService.getOrderListByCId(String.valueOf(customer.getId())).get(0);
             request.setAttribute("orderList",orderList);
@@ -31,8 +34,6 @@ public class OrderServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doPost(request, response);
+
     }
-
-
 }

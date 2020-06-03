@@ -20,16 +20,16 @@
     <div class="text-gray-400 text-uppercase px-3 px-lg-4 py-4 font-weight-bold small headings-font-family">USER CENTER</div>
     <ul class="sidebar-menu list-unstyled">
         <li class="sidebar-list-item"><a href="personal.jsp" class="sidebar-link text-muted"><i class="o-home-1 mr-3 text-gray"></i><span>个人信息</span></a></li>
-        <li class="sidebar-list-item"><a href="charts.html" class="sidebar-link text-muted"><i class="o-survey-1 mr-3 text-gray  active"></i><span>我的订单</span></a></li>
+        <li class="sidebar-list-item"><a href="order" class="sidebar-link text-muted active"><i class="o-survey-1 mr-3 text-gray"></i><span>我的订单</span></a></li>
         <li class="sidebar-list-item"><a href="tables.html" class="sidebar-link text-muted"><i class="o-diploma-1 mr-3 text-gray"></i><span>超级会员</span></a></li>
         <li class="sidebar-list-item"><a href="forms.html" class="sidebar-link text-muted"><i class="o-document-1 mr-3 text-gray"></i><span>我的收藏</span></a></li>
         <li class="sidebar-list-item">
             <a href="#" data-toggle="collapse" data-target="#pages" aria-expanded="true" aria-controls="pages" class="sidebar-link text-muted"><i class="o-database-1 mr-3 text-gray"></i><span>我的钱包</span></a>
-            <div id="pages" class="collapse show">
+            <div id="pages" class="collapse">
                 <ul class="sidebar-menu list-unstyled border-left border-primary border-thick">
                     <li class="sidebar-list-item"><a href="balance.jsp" class="sidebar-link text-muted pl-lg-5">余额查询</a></li>
                     <li class="sidebar-list-item"><a href="recharge.jsp" class="sidebar-link text-muted pl-lg-5">账户充值</a></li>
-                    <li class="sidebar-list-item"><a href="#" class="sidebar-link text-muted pl-lg-5">我的订单</a></li>
+                    <li class="sidebar-list-item"><a href="order" class="sidebar-link text-muted pl-lg-5">绑定银行卡</a></li>
                 </ul>
             </div>
         </li>
@@ -56,6 +56,7 @@
                 <td>单价</td>
                 <td>数量</td>
                 <td>小计</td>
+                <td>下单时间</td>
                 <td>操作</td>
             </tr>
             </thead>
@@ -68,10 +69,13 @@
                         <span class="p-price"> ¥ ${item.price }</span>
                     </td>
                     <td>
-                        <input type="number" step="1" min="1" class="form-control quantity" name="quantity" value="${item.quantity }">
+                        <span>${item.quantity }</span>
                     </td>
                     <td>
                         <span class="subTotal">${item.price*item.quantity }</span>
+                    </td>
+                    <td>
+                        <span>${item.date }</span>
                     </td>
                     <td class="delete" style="cursor: pointer;">X</td>
                 </tr>

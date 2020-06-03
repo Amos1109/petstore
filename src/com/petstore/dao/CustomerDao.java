@@ -57,7 +57,7 @@ public class CustomerDao extends BaseDao{
 	}
 
 	public List<Map<String,Object>> getOrderPetByCId(String cid){
-		String sql="select name,img,orderdetail.price,quantity from `order`,orderdetail,pet where cid=? and `order`.id=orderdetail.oid and orderdetail.pid=pet.id";
+		String sql="select name,img,orderdetail.price,quantity,date from `order`,orderdetail,pet where cid=? and `order`.id=orderdetail.oid and orderdetail.pid=pet.id";
 		Object param[]= {cid};
 		return select(sql, param);
 	}

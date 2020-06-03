@@ -19,8 +19,8 @@
 <div id="sidebar" class="sidebar py-3">
     <div class="text-gray-400 text-uppercase px-3 px-lg-4 py-4 font-weight-bold small headings-font-family">USER CENTER</div>
     <ul class="sidebar-menu list-unstyled">
-        <li class="sidebar-list-item"><a href="personal.jsp" class="sidebar-link text-muted"><i class="o-home-1 mr-3 text-gray  active" ></i><span>个人信息</span></a></li>
-        <li class="sidebar-list-item"><a href="charts.html" class="sidebar-link text-muted"><i class="o-survey-1 mr-3 text-gray"></i><span>我的订单</span></a></li>
+        <li class="sidebar-list-item"><a href="personal.jsp" class="sidebar-link text-muted active"><i class="o-home-1 mr-3 text-gray" ></i><span>个人信息</span></a></li>
+        <li class="sidebar-list-item"><a href="order" class="sidebar-link text-muted"><i class="o-survey-1 mr-3 text-gray"></i><span>我的订单</span></a></li>
         <li class="sidebar-list-item"><a href="tables.html" class="sidebar-link text-muted"><i class="o-diploma-1 mr-3 text-gray"></i><span>超级会员</span></a></li>
         <li class="sidebar-list-item"><a href="forms.html" class="sidebar-link text-muted"><i class="o-document-1 mr-3 text-gray"></i><span>我的收藏</span></a></li>
         <li class="sidebar-list-item">
