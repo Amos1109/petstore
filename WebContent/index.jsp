@@ -16,8 +16,8 @@
             <form action="index" class="form-inline"  id="petForm"  method="post">
                 <div class="form-group">
                     <select name="cid" class="form-control" id="cid" style="width:80px">
-                        <option value="0" >全部</option>
-                        <option value="1" >猫</option>
+                        <option value="0">全部</option>
+                        <option value="1">猫</option>
                         <option value="2">狗</option>
                         <option value="3">鸟</option>
                         <option value="4">鱼</option>
@@ -28,6 +28,7 @@
                 </div>
             </form>
             </div>
+        <br/>
         <c:if test="${fn:length(result.dataList) eq 0 }">
             <span>查询的结果不存在。</span>
         </c:if>

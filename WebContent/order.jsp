@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <html>
 <head>
     <jsp:include page="head.jsp"></jsp:include>
@@ -12,6 +13,11 @@
     <link rel="stylesheet" href="css/orionicons.css">
     <!-- Font Awesome CSS-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <style>
+        .clear {
+            clear: both;
+        }
+    </style>
 </head>
 <body>
 
@@ -42,12 +48,15 @@
         <li class="sidebar-list-item"><a href="#" class="sidebar-link text-muted"><i class="o-wireframe-1 mr-3 text-gray"></i><span>发现更多</span></a></li>
     </ul>
 </div>
-
-<div class="card">
+<div style="width: 800px;float:left">
+<c:forEach items="${orderList}" var="order">
+<div class="card" style="height: auto">
     <div class="card-header">
-        <h2 class="h6 text-uppercase mb-0">我的订单</h2>
+        <h2 class="h6 text-uppercase mb-0">订单编号：${order.id}&nbsp;&nbsp;下单时间：${order.date}&nbsp;&nbsp;订单金额：${order.money}
+             <button type="button" class="btn btn-outline-secondary btn-show" style="float: right" data-id="${order.id}">详情</button></h2>
+
     </div>
-    <div class="card-body">
+    <div class="card-body" style="height: auto;display: none">
         <table class="table panel-body ">
             <thead>
             <tr>
@@ -83,20 +92,23 @@
             </tbody>
         </table>
 
-        <div class="card-footer">
-            <div class="pull-left" >总计: ¥ <span id="totalMoney">${orderTotal.totalMoney }</span></div>
-            <a class="btn btn-warning  pull-right" href="order">立即支付</a>
-        </div>
+<%--        <div class="card-footer">--%>
+<%--            <div class="pull-left" >总计: ¥ <span id="totalMoney">${orderTotal.totalMoney }</span></div>--%>
+<%--            <a class="btn btn-warning  pull-right" href="order">立即支付</a>--%>
+<%--        </div>--%>
     </div>
 </div>
+</c:forEach>
+</div>
+
+<div class="clear"></div>
 <jsp:include page="footer.jsp"></jsp:include>
-<!-- JavaScript files-->
-<script src="js/jquery.min.js"></script>
-
-<script src="js/bootstrap.min.js"></script>
-
-<script type="text/javascript">
-
+<script>
+    $(function () {
+        $(".btn-show").click(function () {
+            $(this).parent().parent().next().toggle(100);
+        })
+    })
 </script>
 </body>
 </html>

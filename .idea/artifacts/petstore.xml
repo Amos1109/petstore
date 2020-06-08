@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="war" build-on-make="true" name="petstore">
+    <output-path>$PROJECT_DIR$/../../war</output-path>
+    <root id="archive" name="petstore.war">
+      <element id="artifact" artifact-name="petstore:Web exploded" />
+      <element id="dir-copy" path="$PROJECT_DIR$/WebContent" />
+    </root>
+  </artifact>
+</component>

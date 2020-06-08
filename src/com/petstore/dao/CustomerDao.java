@@ -45,7 +45,7 @@ public class CustomerDao extends BaseDao{
 
 	public int addOrder(long cid,String money){
 		String sql="insert into `order` values(null,?,?,?,now())";
-		Object param[]={cid,money,"0"};
+		Object param[]={cid,money,"Î´¸¶¿î"};
 		String sql1="select LAST_INSERT_ID() from `order`";
 		return  getLastId(sql,sql1,param);
 	}
@@ -56,14 +56,14 @@ public class CustomerDao extends BaseDao{
 		return updateByParams(sql,param);
 	}
 
-	public List<Map<String,Object>> getOrderPetByCId(String cid){
-		String sql="select name,img,orderdetail.price,quantity,date from `order`,orderdetail,pet where cid=? and `order`.id=orderdetail.oid and orderdetail.pid=pet.id";
-		Object param[]= {cid};
+	public List<Map<String,Object>> getOrderPetByOId(String oid){
+		String sql="select name,img,orderdetail.price,quantity from `order`,orderdetail,pet where oid=? and `order`.id=orderdetail.oid and orderdetail.pid=pet.id";
+		Object param[]= {oid};
 		return select(sql, param);
 	}
 
 	public List<Map<String,Object>>getOrderListByCId(String cid){
-		String sql="select cid,sum(money) as totalMoney from `order` where cid= ? group by cid;";
+		String sql="select *  from `order` where cid= ? order by id desc;";
 		Object param[]={cid};
 		return select2(sql,param);
 	}
@@ -91,21 +91,21 @@ public class CustomerDao extends BaseDao{
 			paramList.add(cid);
 		}
 
-		// èµ·å§‹ç´¢å¼•
+		// ÆğÊ¼Ë÷Òı
 		int fromIndex	= pageSize * (pageNum -1);
 
-		// ä½¿ç”¨limitå…³é”®å­—ï¼Œå®ç°åˆ†é¡µ
+		// Ê¹ÓÃlimit¹Ø¼ü×Ö£¬ÊµÏÖ·ÖÒ³
 		sql.append(" limit " + fromIndex + ", " + pageSize );
 
-		// å­˜æ”¾æ‰€æœ‰æŸ¥è¯¢å‡ºçš„å® ç‰©å¯¹è±¡
+		// ´æ·ÅËùÓĞ²éÑ¯³öµÄ³èÎï¶ÔÏó
 		List<PetDTO> petList = new ArrayList<PetDTO>();
 
-		// è·å–æ€»è®°å½•æ•°
+		// »ñÈ¡×Ü¼ÇÂ¼Êı
 		List<Map<String, Object>> countResult = findResult(countSql.toString(), paramList);
 		Map<String, Object> countMap = countResult.get(0);
 		int totalRecord = ((Number)countMap.get("totalRecord")).intValue();
 
-		// è·å–æŸ¥è¯¢çš„å® ç‰©è®°å½•
+		// »ñÈ¡²éÑ¯µÄ³èÎï¼ÇÂ¼
 		List<Map<String, Object>> petResult = findResult(sql.toString(), paramList);
 		if (petResult != null) {
 			for (Map<String, Object> map : petResult) {
@@ -113,13 +113,13 @@ public class CustomerDao extends BaseDao{
 				petList.add(s);
 			}
 		}
-		//è·å–æ€»é¡µæ•°
+		//»ñÈ¡×ÜÒ³Êı
 		int totalPage = totalRecord / pageSize;
 		if(totalRecord % pageSize !=0){
 			totalPage++;
 		}
 
-		// ç»„è£…pagerå¯¹è±¡
+		// ×é×°pager¶ÔÏó
 		result = new Pager<PetDTO>(pageSize, pageNum,
 				totalRecord, totalPage, petList);
 

@@ -71,22 +71,7 @@
     </div>
 </div>
 <jsp:include page="footer.jsp"></jsp:include>
-<!-- JavaScript files-->
-<script src="js/jquery.min.js"></script>
 
-<script src="js/bootstrap.min.js"></script>
-
-<script type="text/javascript">
-    var successMsg = '${successMsg}';
-    var errorMsg='${errorMsg}';
-    if(successMsg!= ''){
-        toastr.success("充值成功！");
-    }else if(errorMsg!=''){
-        toastr.error("充值失败！");
-    }else{
-        true;
-    }
-</script>
 </body>
 </html>
 

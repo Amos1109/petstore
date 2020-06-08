@@ -34,8 +34,7 @@ public class DetailServlet extends HttpServlet {
         String id = request.getParameter("id");
         CustomerService customerService =
                 new CustomerService();
-        Map<String, Object> pet =
-                customerService.getPetById(id).get(0);
+        Map<String, Object> pet = customerService.getPetById(id).get(0);
         request.setAttribute("pet", pet);
         request.getRequestDispatcher("detail.jsp").forward(request, response);
         response.getWriter().println("detailServlet");

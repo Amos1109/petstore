@@ -23,7 +23,7 @@
                 <div class="col-6 col-md">
                     <h5>关于我们</h5>
                     <ul class="list-unstyled text-small">
-                    <li><a class="text-muted" href="#">宠物商店有限公司</a></li>
+                    <li><a class="text-muted" href="#">计科182 18164308 洪宇庭</a></li>
                     </ul>
                 </div>
             </div>

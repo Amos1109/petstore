@@ -22,10 +22,8 @@ public class OrderServlet extends HttpServlet {
             response.sendRedirect("login.jsp");
         } else {
             CustomerService customerService = new CustomerService();
-            List<Map<String,Object>> orderList=customerService.getOrderPetByCId(String.valueOf(customer.getId()));
-            Map<String,Object>orderTotal=customerService.getOrderListByCId(String.valueOf(customer.getId())).get(0);
+            List<Map<String,Object>> orderList=customerService.getOrderListByCId(String.valueOf(customer.getId()));
             request.setAttribute("orderList",orderList);
-            request.setAttribute("orderTotal",orderTotal);
             request.getRequestDispatcher("order.jsp").forward(request, response);
         }
     }
