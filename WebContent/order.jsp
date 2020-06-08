@@ -50,6 +50,7 @@
 </div>
 <div style="width: 800px;float:left">
 <c:forEach items="${orderList}" var="order">
+    <br/>
 <div class="card" style="height: auto">
     <div class="card-header">
         <h2 class="h6 text-uppercase mb-0">订单编号：${order.id}&nbsp;&nbsp;下单时间：${order.date}&nbsp;&nbsp;订单金额：${order.money}
@@ -86,7 +87,7 @@
 <script>
     $(function () {
         $(".btn-show").click(function () {
-            $(this).parent().parent().next().toggle(100);
+            $(this).parent().parent().next().toggle(600);
         });
 
         $(".btn-show").one("click",function(){

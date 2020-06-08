@@ -1,5 +1,6 @@
 package com.petstore.servlet.customer;
 
+import com.petstore.dto.CustomerDTO;
 import com.petstore.service.CustomerService;
 
 import javax.servlet.ServletException;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -29,10 +31,19 @@ public class RechargeServlet extends HttpServlet {
 
         } else {
             Map<String, Object> user = users.get(0);
-            request.getSession().setAttribute("user", user);
+            request.getSession().setAttribute("user", getCustomByMap(user));
             request.setAttribute("successMsg", "≥‰÷µ≥…π¶£°");
             request.getRequestDispatcher("balance.jsp").forward(request, response);
 
         }
+    }
+
+    private CustomerDTO getCustomByMap(Map<String, Object> map) {
+        CustomerDTO customer = new CustomerDTO();
+        customer.setBalance(((BigDecimal) map.get("balance")).doubleValue());
+        customer.setName((String) map.get("name"));
+        customer.setId((long) map.get("id"));
+        customer.setEmail((String) map.get("email"));
+        return customer;
     }
 }
