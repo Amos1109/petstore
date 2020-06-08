@@ -65,30 +65,10 @@
                 <td>单价</td>
                 <td>数量</td>
                 <td>小计</td>
-                <td>下单时间</td>
-                <td>操作</td>
             </tr>
             </thead>
             <tbody>
-            <c:forEach var="item" items="${orderList}">
-                <tr class="shop">
-                    <td><img src="petImg/${item.img }" width="80" ></td>
-                    <td>${item.name}</td>
-                    <td>
-                        <span class="p-price"> ¥ ${item.price }</span>
-                    </td>
-                    <td>
-                        <span>${item.quantity }</span>
-                    </td>
-                    <td>
-                        <span class="subTotal">${item.price*item.quantity }</span>
-                    </td>
-                    <td>
-                        <span>${item.date }</span>
-                    </td>
-                    <td class="delete" style="cursor: pointer;">X</td>
-                </tr>
-            </c:forEach>
+
             </tbody>
         </table>
 
@@ -107,7 +87,29 @@
     $(function () {
         $(".btn-show").click(function () {
             $(this).parent().parent().next().toggle(100);
-        })
+        });
+
+        $(".btn-show").one("click",function(){
+            var orderId=$(this).data("id");
+            var tbody=$(this).parent().parent().next().find("tbody");
+            $.ajax({
+                url:'orderdetail',
+                dataType:"JSON",
+                type:'post',
+                data:{
+                    'id':orderId,
+                },
+                success:function(data){
+                    if(data.success==true){
+                        tbody.append(data.msg)
+
+                    }else{
+                        toastr.error(data.msg);
+                    }
+                }
+            });
+        }) ;
+
     })
 </script>
 </body>

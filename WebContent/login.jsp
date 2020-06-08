@@ -26,6 +26,9 @@
                     <label>
                         <input type="checkbox" value="remember-me"> 记住我
                     </label>
+                    <label>
+                        824203764@qq.com 123
+                    </label>
                 </div>
                 <button class="btn btn-lg btn-success btn-block" type="submit">登录</button>
             </form>
