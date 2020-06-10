@@ -41,7 +41,6 @@ public class OrderDetailServlet extends HttpServlet {
         response.setContentType("text/json;charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
 
-
         PrintWriter out = response.getWriter();
         String resultJson = JSON.toJSONString(result);
         out.print(resultJson);

@@ -10,15 +10,11 @@ import com.petstore.dto.PetDTO;
 import com.petstore.util.Pager;
 
 public class CustomerDao extends BaseDao{
-	public List<Map<String, Object>>getPetListByCId(String cid){
-		if(cid==null||cid.isEmpty()) {
-			String sql="select * from pet where is_offsale = 0 order by id limit 3";
-			return select(sql, null);
-		}else {
-			String sql="select * from pet where is_offsale = 0 and c_id=? order by id limit 3";
-			Object param[]= {cid};
+	public List<Map<String, Object>>getPetList(int page,int limit){
+			int first=(page-1)*10;
+			Object param[]={first,limit};
+			String sql="select * from pet order by id limit ?,? ";
 			return select(sql, param);
-		}
 	}
 	
 	public List<Map<String, Object>> getPetById(String id){

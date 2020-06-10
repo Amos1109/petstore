@@ -26,8 +26,15 @@ public class CustomerServlet extends HttpServlet {
             request.getRequestDispatcher("login.jsp").forward(request, response);
         } else {
             Map<String, Object> user = users.get(0);
-            request.getSession().setAttribute("user", getCustomByMap(user));
-            response.sendRedirect(request.getContextPath() + "/index");
+            CustomerDTO customer=getCustomByMap(user);
+            request.getSession().setAttribute("user",customer);
+            if(customer.getName().equals("Admin")){
+                response.sendRedirect(request.getContextPath() + "/adminMain.jsp");
+            }else {
+                response.sendRedirect(request.getContextPath() + "/index");
+            }
+
+
         }
 
     }
