@@ -14,7 +14,7 @@ import com.petstore.util.Pager;
 public class CustomerService {
 	
 	CustomerDao customerDao=new CustomerDao();
-	//获取宠物首页列表：作废
+	//获取宠物首页列表
 	public List<Map<String, Object>>getPetList(int page,int limit){ return customerDao.getPetList(page,limit); }
 
 	//获取商店宠物详情
