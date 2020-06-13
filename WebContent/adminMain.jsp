@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>博客后台管理 - Layui</title>
+    <title>商店后台管理 - Layui</title>
 
     <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
     <link rel="stylesheet" href="layui/css/layui.css">

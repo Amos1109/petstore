@@ -50,6 +50,7 @@ public class CustomerServlet extends HttpServlet {
         customer.setName((String) map.get("name"));
         customer.setId((long) map.get("id"));
         customer.setEmail((String) map.get("email"));
+        customer.setPwd((String)map.get("pwd"));
         return customer;
     }
 }

@@ -106,7 +106,6 @@
     $(function() {
 
     $("#submit").click(function () {
-        console.info("111");
         var id=$("input[name='id']").val();
         var name=$("input[name='name']").val();
         var tag=$("input[name='tag']").val();

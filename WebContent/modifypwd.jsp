@@ -3,7 +3,7 @@
 <html>
 <head>
     <jsp:include page="head.jsp"></jsp:include>
-    <title>账户充值</title>
+    <title>修改密码</title>
     <!-- Font Awesome CSS-->
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <!-- theme stylesheet-->
@@ -28,7 +28,7 @@
             <div id="pages" class="collapse show">
                 <ul class="sidebar-menu list-unstyled border-left border-primary border-thick">
                     <li class="sidebar-list-item"><a href="balance.jsp" class="sidebar-link text-muted pl-lg-5">余额查询</a></li>
-                    <li class="sidebar-list-item"><a href="recharge.jsp" class="sidebar-link text-muted pl-lg-5 active">账户充值</a></li>
+                    <li class="sidebar-list-item"><a href="recharge.jsp" class="sidebar-link text-muted pl-lg-5">账户充值</a></li>
                     <li class="sidebar-list-item"><a href="#" class="sidebar-link text-muted pl-lg-5">绑定银行卡</a></li>
                 </ul>
             </div>
@@ -38,42 +38,35 @@
     <div class="text-gray-400 text-uppercase px-3 px-lg-4 py-4 font-weight-bold small headings-font-family">EXTRAS</div>
     <ul class="sidebar-menu list-unstyled">
         <li class="sidebar-list-item"><a href="login.html" class="sidebar-link text-muted"><i class="o-exit-1 mr-3 text-gray"></i><span>安全退出</span></a></li>
-        <li class="sidebar-list-item"><a href="modifypwd.jsp" class="sidebar-link text-muted"><i class="o-imac-screen-1 mr-3 text-gray"></i><span>修改密码</span></a></li>
+        <li class="sidebar-list-item"><a href="modifypwd.jsp" class="sidebar-link text-muted active"><i class="o-imac-screen-1 mr-3 text-gray"></i><span>修改密码</span></a></li>
         <li class="sidebar-list-item"><a href="#" class="sidebar-link text-muted"><i class="o-wireframe-1 mr-3 text-gray"></i><span>发现更多</span></a></li>
     </ul>
 </div>
 
 <div class="card">
     <div class="card-header">
-        <h2 class="h6 text-uppercase mb-0">账户充值</h2>
+        <h2 class="h6 text-uppercase mb-0">修改密码</h2>
     </div>
     <div class="card-body">
         <div>
             <img src="http://pic2.zhimg.com/50/v2-be54dda1c19aaeab4f90bcb699057d03_hd.jpg" style="max-width: 3rem" class="rounded-circle mx-3 my-2 my-lg-0" style="display: inline-block">
             <h6 class="mb-0" style="display: inline-block">AmosHong</h6>
         </div>
-        <form style="width: 100%;max-width:300px;margin-top: 20px" action="recharge" method="post">
+        <form style="width: 100%;max-width:300px;margin-top: 20px" action="modifypwd" method="post">
             <div class="form-group">
-                <label class="form-control-label text-uppercase">Email</label>
-                <input type="email" value="824203764@qq.com" class="form-control" name="email" readonly>
+                <label class="form-control-label text-uppercase">请输入原密码：</label>
+                <input type="password" value="" class="form-control" name="oldPassword">
             </div>
             <div class="form-group">
-                <label class="form-control-label text-uppercase">充值金额</label><br/>
-                <label class="radio-inline">
-                    <input type="radio"  value="50" name="money" checked>50元
-                </label> &nbsp;&nbsp;&nbsp;
-                <label class="radio-inline">
-                    <input type="radio"  value="100" name="money">100元
-                </label>&nbsp;&nbsp;&nbsp;
-                <label class="radio-inline">
-                    <input type="radio"  value="500" name="money">500元
-                </label>&nbsp;&nbsp;&nbsp;
-                <label class="radio-inline">
-                    <input type="radio"  value="1000" name="money">1000元
-                </label>
+                <label class="form-control-label text-uppercase">请输入新密码：</label>
+                <input type="password" value="" class="form-control" name="password">
             </div>
             <div class="form-group">
-                <button type="submit" class="btn btn-primary" style="display:block;margin:0 auto">充值</button>
+                <label class="form-control-label text-uppercase">请确认新密码：</label>
+                <input type="password" value="" class="form-control" name="password2">
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary" style="display:block;margin:0 auto" value="修改密码"></input>
             </div>
         </form>
         <div>
@@ -83,18 +76,6 @@
 </div>
 <jsp:include page="footer.jsp"></jsp:include>
 
-
-<script type="text/javascript">
-    var successMsg = '${successMsg}';
-    var errorMsg='${errorMsg}';
-    if(successMsg!= ''){
-        toastr.success(successMsg);
-    }else if(errorMsg!=''){
-        toastr.error(errorMsg);
-    }else{
-        true;
-    }
-</script>
 </body>
 </html>
 
