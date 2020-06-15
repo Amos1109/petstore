@@ -67,7 +67,7 @@
                 <input type="password" value="" class="form-control" name="password2">
             </div>
             <div class="form-group">
-                <button type="button" class="btn btn-primary modify" style="display:block;margin:0 auto" value="修改密码"></button>
+                <button type="button" class="btn btn-primary modify" style="display:block;margin:0 auto" >修改密码</button>
             </div>
         </form>
     </div>
@@ -96,7 +96,7 @@
                 },
                 success:function(data){
                     if(data.success==true){
-
+                        toastr.success("密码修改成功，下次登录生效！")
 
                     }else{
                         toastr.error(data.msg);

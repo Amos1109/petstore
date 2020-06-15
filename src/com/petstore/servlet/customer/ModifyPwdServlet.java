@@ -1,5 +1,6 @@
 package com.petstore.servlet.customer;
 
+import com.alibaba.fastjson.JSON;
 import com.petstore.dto.CustomerDTO;
 import com.petstore.service.CustomerService;
 import com.petstore.util.JsonResult;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.Map;
 
@@ -22,16 +24,31 @@ public class ModifyPwdServlet extends HttpServlet {
         String pwd=request.getParameter("password");
         JsonResult result=new JsonResult();
         CustomerService customerService=new CustomerService();
-        List<Map<String, Object>> users = customerService.checkLogin(email, pwd);
+        List<Map<String, Object>> users = customerService.checkLogin(email,oldPwd);
         if (users.isEmpty()) {
             result.setSuccess(false);
-            result.setMsg("ÂéüÂØÜÁ†Å‰∏çÊ≠£Á°ÆÔºÅ");
+            result.setMsg("‘≠√‹¬Î≤ª’˝»∑£°");
         } else {
-            result.setSuccess(true);
+            if( customerService.modifyPwd(email,pwd)){
+                result.setSuccess(true);
+                result.setMsg("√‹¬Î–ﬁ∏ƒ≥…π¶£°");
+            }else {
+                result.setSuccess(false);
+                result.setMsg("√‹¬Î–ﬁ∏ƒ ß∞‹£°");
+            }
 
             }
 
+        // ‰≥ˆJson
+        response.setContentType("text/json;charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
 
+
+        PrintWriter out = response.getWriter();
+        String resultJson = JSON.toJSONString(result);
+        out.print(resultJson);
+        out.flush();
+        out.close();
         }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

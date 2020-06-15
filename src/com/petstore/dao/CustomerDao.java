@@ -52,6 +52,12 @@ public class CustomerDao extends BaseDao{
 		return updateByParams(sql,param);
 	}
 
+	public boolean modifyPwd(String email,String pwd){
+		String sql="update customer SET pwd=? where email=?";
+		Object param[]={pwd,email};
+		return updateByParams(sql,param);
+	}
+
 	public List<Map<String,Object>> getOrderPetByOId(String oid){
 		String sql="select name,img,orderdetail.price,quantity from `order`,orderdetail,pet where oid=? and `order`.id=orderdetail.oid and orderdetail.pid=pet.id";
 		Object param[]= {oid};

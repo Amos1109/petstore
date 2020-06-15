@@ -52,4 +52,6 @@ public class CustomerService {
 	public Pager<PetDTO> findPet(PetDTO petModel, int pageNum,int pageSize)  { return customerDao.findPet(petModel,pageNum,pageSize); }
 
 	public int totalRecord(){return customerDao.totalRecord();}
+
+	public boolean modifyPwd(String email,String pwd){return customerDao.modifyPwd(email,pwd);}
 }
