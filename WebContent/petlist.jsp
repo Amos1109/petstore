@@ -11,18 +11,9 @@
     <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
 </head>
 <body>
-<div style="margin-bottom: 5px;">
 
-    <!-- 示例-970 -->
-    <ins class="adsbygoogle" style="display:inline-block;width:970px;height:90px" data-ad-client="ca-pub-6111334333458862" data-ad-slot="3820120620"></ins>
 
-</div>
 
-<div class="layui-btn-group demoTable">
-    <button class="layui-btn" data-type="getCheckData">获取选中行数据</button>
-    <button class="layui-btn" data-type="getCheckLength">获取选中数目</button>
-    <button class="layui-btn" data-type="isAll">验证是否全选</button>
-</div>
 
 <table class="layui-table" lay-data="{width: 892, height:330, url:'petlist', page:true, id:'idTest',limit:'10'}" lay-filter="demo">
     <thead>
@@ -44,8 +35,10 @@
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>
 
-
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
 <script src="layui/layui.js" charset="utf-8"></script>
+<script src="//cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+<link href="//cdn.bootcss.com/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 <script>
     layui.use('table', function(){
@@ -60,9 +53,27 @@
             if(obj.event === 'detail'){
                 layer.msg('ID：'+ data.id + ' 的查看操作');
             } else if(obj.event === 'del'){
-                layer.confirm('真的删除行么', function(index){
-                    obj.del();
-                    layer.close(index);
+                layer.confirm('真的要删除吗？', function(index){
+                    $.ajax({
+                        url:'deletepet',
+                        dataType:"JSON",
+                        type:'post',
+                        data:{
+                            'id':data.id,
+                        },
+                        success:function(data){
+                            if(data.success==true){
+                                obj.del();
+                                layer.close(index);
+                                toastr.success("成功删除了1种商品！");
+
+                            }else{
+                                toastr.error("删除商品失败！");
+                                layer.close(index);
+                            }
+
+                        }
+                    });
                 });
             } else if(obj.event === 'edit'){
                 var id=data.id;
@@ -75,22 +86,6 @@
             }
         });
 
-        var $ = layui.$, active = {
-            getCheckData: function(){ //获取选中数据
-                var checkStatus = table.checkStatus('idTest')
-                    ,data = checkStatus.data;
-                layer.alert(JSON.stringify(data));
-            }
-            ,getCheckLength: function(){ //获取选中数目
-                var checkStatus = table.checkStatus('idTest')
-                    ,data = checkStatus.data;
-                layer.msg('选中了：'+ data.length + ' 个');
-            }
-            ,isAll: function(){ //验证是否全选
-                var checkStatus = table.checkStatus('idTest');
-                layer.msg(checkStatus.isAll ? '全选': '未全选')
-            }
-        };
 
         $('.demoTable .layui-btn').on('click', function(){
             var type = $(this).data('type');

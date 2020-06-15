@@ -12,6 +12,17 @@
 <body>
 <br/>
 <div style="width: 400px;height: auto">
+    <label class="layui-form-label">宠物图片：</label>
+    <div class="layui-upload-drag" id="test10">
+        <i class="layui-icon layui-icon-app"></i>
+        <p>点击上传，或将文件拖拽到此处</p>
+        <div id="uploadDemoView">
+            <hr>
+            <img src="petImg/${pet.img}" name="petImg" alt="上传成功后渲染" style="width: 80px;height: 100px ">
+        </div>
+    </div>
+    <br/>
+    <br/>
 <form class="layui-form" lay-filter="petedit">
     <input type="hidden" name="id">
     <div class="layui-form-item">
@@ -53,6 +64,13 @@
     </div>
 
     <div class="layui-form-item">
+        <label class="layui-form-label">宠物体重：</label>
+        <div class="layui-input-inline">
+            <input type="text" name="weight" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
         <label class="layui-form-label">宠物库存：</label>
         <div class="layui-input-inline">
             <input type="text" name="stock" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
@@ -76,6 +94,7 @@
 <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
 <script src="layui/layui.js" charset="utf-8"></script>
+<script src="layui/lay/modules/upload.js" charset="utf-8"></script>
 <script>
     toastr.options = { // toastr配置
         "closeButton": true, //是否显示关闭按钮
@@ -97,10 +116,27 @@
             ,"cid": "${pet.c_id}"
             ,"price": "${pet.price}"
             ,"stock": "${pet.stock}"
+            ,"weight":"${pet.weight}"
             ,"is_offsale": "${pet.offsale=="false"?"1":""}"
         });
 
         form.render(); //更新全部
+
+    });
+
+    layui.use('upload', function(){
+        var $ = layui.jquery
+            ,upload = layui.upload;
+    //拖拽上传
+    upload.render({
+        elem: '#test10'
+        ,url: 'imageupload' //改成您自己的上传接口
+        ,done: function(res){
+            layer.msg('上传成功，请提交保存');
+            layui.$('#uploadDemoView').find('img').attr('src', 'petImg/'+res.msg);
+            console.log(res)
+        }
+    });
     });
 
     $(function() {
@@ -113,6 +149,8 @@
         var cid=$("select[name='cid']").val();
         var price=$("input[name='price']").val();
         var stock=$("input[name='stock']").val();
+        var weight=$("input[name='weight']").val();
+        var img=$('img').attr('src');
         $.ajax({
             url:'updatepet',
             dataType:"JSON",
@@ -124,7 +162,9 @@
                 'description':description,
                 'cid':cid,
                 'price':price,
-                'stock':stock
+                'stock':stock,
+                'weight':weight,
+                'img':img
             },
             success:function(data){
                 if(data.success==true){

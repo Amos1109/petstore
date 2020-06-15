@@ -30,11 +30,11 @@ public class PetListServlet extends HttpServlet {
                 PetDTO pet=new PetDTO(petList.get(i));
                 pets.add(pet);
             }
-
+            int totalRecord=customerService.totalRecord();
             String PetJson= JSON.toJSONString(pets);
             StringBuffer sb = new StringBuffer();
             sb.append("{\"count\":");
-            sb.append(40);
+            sb.append(totalRecord);
             sb.append(",\"code\":");
             sb.append(0);
             sb.append(",\"msg\":");

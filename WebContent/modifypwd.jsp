@@ -53,6 +53,7 @@
             <h6 class="mb-0" style="display: inline-block">AmosHong</h6>
         </div>
         <form style="width: 100%;max-width:300px;margin-top: 20px" action="modifypwd" method="post">
+            <input type="hidden" value="${user.email}" name="email">
             <div class="form-group">
                 <label class="form-control-label text-uppercase">请输入原密码：</label>
                 <input type="password" value="" class="form-control" name="oldPassword">
@@ -66,16 +67,51 @@
                 <input type="password" value="" class="form-control" name="password2">
             </div>
             <div class="form-group">
-                <input type="submit" class="btn btn-primary" style="display:block;margin:0 auto" value="修改密码"></input>
+                <button type="button" class="btn btn-primary modify" style="display:block;margin:0 auto" value="修改密码"></button>
             </div>
         </form>
-        <div>
-            <img src="">
-        </div>
     </div>
 </div>
 <jsp:include page="footer.jsp"></jsp:include>
+<script>
+    $(function() {
+    $(".modify").click(function(){
+        var email=$("input[name='email']").val();
+        var oldPassword=$("input[name='oldPassword']").val();
+        var password=$("input[name='password']").val();
+        var password2=$("input[name='password2']").val();
+        if(password!=password2){
+            toastr.error("两次密码不一致！");
+            return false;
+        }
+        if(password!=""&&password!=null&&password==password2){
+            $.ajax({
+                url:'modifypwd',
+                dataType:"JSON",
+                type:'post',
+                data:{
+                    'oldPassword':oldPassword,
+                    'email':email,
+                    'password':password
+                },
+                success:function(data){
+                    if(data.success==true){
 
+
+                    }else{
+                        toastr.error(data.msg);
+                    }
+
+                }
+            });
+        }else{
+            toastr.error("新密码不能为空！");
+            return false;
+        }
+
+    });
+    });
+</script>
 </body>
 </html>
 

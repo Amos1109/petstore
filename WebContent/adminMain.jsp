@@ -30,14 +30,13 @@
             var element = layui.element;
         });
 
-        function refreshSystem(){
-            $.post("${pageContext.request.contextPath }/admin/system/refreshSystem.do",{},function(result){
-                if(result.success){
-                    toastr.success("刷新成功！");
-                }else{
-                    toastr.error("刷新失败！");
-                }
-            },"json");
+        function openAddPetDialog() {
+            layer.open({
+                title:'编辑宠物信息',
+                type: 2,
+                area: ['500px', '600px'],
+                content: 'petedit.jsp',
+            });
         }
 
         function logout(){
@@ -60,7 +59,7 @@
             },function(r){
                 if(r){
                     $("#fm").form("submit",{
-                        url:"${pageContext.request.contextPath }/admin/blogger/modifyPassword.do?id=1",
+                        url:"modifypwd",
                         onSubmit:function(){
                             var newPassword=$("#newPassword").val();
                             var newPassword2=$("#newPassword2").val();
@@ -113,7 +112,7 @@
                 </a>
                 <dl class="layui-nav-child">
                     <dd><a href="modifyInfo.jsp">基本资料</a></dd>
-                    <dd><a href="">修改密码</a></dd>
+                    <dd><a onclick="openPasswordModifyDialog()">修改密码</a></dd>
                 </dl>
             </li>
             <li class="layui-nav-item"><a onclick="logout()" style="cursor: pointer;">安全退出</a></li>
@@ -127,7 +126,7 @@
                 <li class="layui-nav-item">
                     <a class="" href="javascript:;">商店管理</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="#">新增宠物</a></dd>
+                        <dd><a onclick="openAddPetDialog()" style="cursor: pointer">新增宠物</a></dd>
                         <dd><a href="petlist.jsp">宠物管理</a></dd>
                         <dd><a href="#">类别管理</a></dd>
                     </dl>

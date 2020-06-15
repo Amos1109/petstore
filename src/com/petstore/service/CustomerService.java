@@ -50,4 +50,6 @@ public class CustomerService {
 
 	//分页
 	public Pager<PetDTO> findPet(PetDTO petModel, int pageNum,int pageSize)  { return customerDao.findPet(petModel,pageNum,pageSize); }
+
+	public int totalRecord(){return customerDao.totalRecord();}
 }

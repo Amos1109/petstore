@@ -123,4 +123,11 @@ public class CustomerDao extends BaseDao{
 	}
 
 
+	public int totalRecord(){
+		List<Object> paramList=new ArrayList<Object>();
+		String sql="select count(id) as totalRecord from pet";
+		List<Map<String, Object>> countResult = findResult(sql,paramList);
+		Map<String, Object> countMap = countResult.get(0);
+		return ((Number)countMap.get("totalRecord")).intValue();
+	}
 }
