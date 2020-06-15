@@ -51,7 +51,12 @@
         table.on('tool(demo)', function(obj){
             var data = obj.data;
             if(obj.event === 'detail'){
-                layer.msg('ID：'+ data.id + ' 的查看操作');
+                layer.open({
+                    title:'宠物信息',
+                    type: 2,
+                    area: ['1100px', '700px'],
+                    content: 'detail?id='+data.id,
+                });
             } else if(obj.event === 'del'){
                 layer.confirm('真的要删除吗？', function(index){
                     $.ajax({
