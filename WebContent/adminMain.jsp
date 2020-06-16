@@ -44,59 +44,68 @@
                 btn: ['确定','取消']
             },function(r){
                 if(r){
-                    window.location.href="${pageContext.request.contextPath }/admin/blogger/logout.do"
+                    window.location.href="logout"
                 }
             });
         }
 
         function openPasswordModifyDialog(){
-            layer.confirm('<form id="fm" method="post"><table cellspacing="15px" style="margin-top:20px;margin-left:10px"><tr><td>请输入新密码：</td><td><input id="newPassword" name="newPassword" type="password" /></td></tr><tr><td>请再次输入新密码：</td><td><input id="newPassword2" name="newPassword2" type="password" /></td></tr></table></form>',{
+            layer.confirm('<form id="fm" method="post"><table cellspacing="15px" style="margin-top:20px;margin-left:10px"><tr><td>请输入原密码：</td><td><input id="oldPassword" name="oldPassword" type="password" /></td></tr><tr><td>请输入新密码：</td><td><input id="newPassword" name="password" type="password" /></td></tr><tr><td>请确认新密码：</td><td><input id="newPassword2" name="password2" type="password" /></td></tr></table></form>',{
                 btn: ['确定',"关闭"],
                 title:'修改密码',
                 type: 1,
                 skin: 'layui-layer-rim', //加上边框
-                area: ['320px', '160px'], //宽高
+                area: ['350px', '200px'], //宽高
             },function(r){
                 if(r){
-                    $("#fm").form("submit",{
-                        url:"modifypwd",
-                        onSubmit:function(){
-                            var newPassword=$("#newPassword").val();
-                            var newPassword2=$("#newPassword2").val();
-                            if(newPassword!=newPassword2){
-                                toastr.error("两次密码不一致！");
-                                return false;
+                    var email="${user.email}";
+                    var oldPassword=$("input[name='oldPassword']").val();
+                    var password=$("input[name='password']").val();
+                    var password2=$("input[name='password2']").val();
+                    if(password!=password2){
+                        toastr.error("两次密码不一致！");
+                        resetValue();
+                        return false;
+                    }
+                    if(password!=""&&password!=null&&password==password2){
+                        $.ajax({
+                            url:'modifypwd',
+                            dataType:"JSON",
+                            type:'post',
+                            data:{
+                                'oldPassword':oldPassword,
+                                'email':email,
+                                'password':password
+                            },
+                            success:function(data){
+                                if(data.success==true){
+                                    toastr.success("密码修改成功，下次登录生效！")
+
+                                }else{
+                                    toastr.error(data.msg);
+                                    resetValue();
+                                }
+
                             }
-                            if(newPassword!=""&&newPassword!=null&&newPassword==newPassword2){
-                                return true;
-                            }else{
-                                toastr.error("新密码不能为空！");
-                                return false;
-                            }
-                        },
-                        success:function(result){
-                            var result=eval('('+result+')');
-                            if(result.success){
-                                toastr.success("密码修改成功！下一次登录生效！");
-                                resetValue();
-                                layer.close(layer.index);
-                            }else{
-                                toastr.error("修改失败！");
-                                return;
-                            }
-                        }
-                    });
+                        });
+                    }else{
+                        toastr.error("新密码不能为空！");
+                        return false;
+                    }
                 }
             });
         }
 
         function resetValue(){
+            $("#oldPassword").val("");
             $("#newPassword").val("");
             $("#newPassword2").val("");
         }
     </script>
 </head>
 <body class="layui-layout-body">
+
+<input type="hidden" name="email" value="${user.email}">
 <div class="layui-layout layui-layout-admin">
     <div class="layui-header">
         <div class="layui-logo">PetStore后台管理</div>

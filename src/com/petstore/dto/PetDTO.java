@@ -1,5 +1,7 @@
 package com.petstore.dto;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import java.util.Date;
 import java.util.Map;
 
@@ -15,6 +17,7 @@ public class PetDTO {
 	private int weight;
 	private int score;
 	private boolean offsale;
+	@JSONField(format="yyyy-MM-dd HH:mm:ss")
 	private Date onSaleTime;
 
 	public PetDTO(Map<String, Object> map){
@@ -29,7 +32,7 @@ public class PetDTO {
 		this.weight = (int)map.get("weight");
 		this.score = (int)map.get("score");
 		this.offsale = (boolean)map.get("is_offsale");
-		this.onSaleTime = (Date) map.get("onSaleTime");
+		this.onSaleTime = (Date) map.get("on_sale_time");
 
 	}
 

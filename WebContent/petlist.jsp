@@ -9,26 +9,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="layui/css/layui.css"  media="all">
     <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+    <style>
+        .layui-table-cell {
+            height: 80px;
+            width: 100px;
+            max-width: 100%;
+        }
+    </style>
 </head>
 <body>
 
 
 
 
-<table class="layui-table" lay-data="{width: 892, height:330, url:'petlist', page:true, id:'idTest',limit:'10'}" lay-filter="demo">
+<table class="layui-table" lay-data="{width: 1418, height:800, url:'petlist', page:true, id:'idTest',limit:'10'}" lay-filter="demo">
     <thead>
     <tr>
         <th lay-data="{type:'checkbox', fixed: 'left'}"></th>
-        <th lay-data="{field:'id', width:80, sort: true, fixed: true}">ID</th>
-        <th lay-data="{field:'name', width:80}">宠物名</th>
-        <th lay-data="{field:'tag', width:160, sort: true}">特点</th>
+        <th lay-data="{field:'id', width:160, sort: true, fixed: true}">ID</th>
+        <th lay-data="{field:'name', width:160}">宠物名</th>
+        <th lay-data="{field:'img', width:160,templet:'#titleTpl'}">宠物图片</th>
+        <th lay-data="{field:'tag', width:160}">特点</th>
         <th lay-data="{field:'price', width:160}">价格</th>
-        <th lay-data="{field:'stock', width:80, sort: true}">库存</th>
+        <th lay-data="{field:'stock', width:160}">库存</th>
+        <th lay-data="{field:'onSaleTime', width:160, sort: true}">上架时间</th>
         <th lay-data="{fixed: 'right', width:178, align:'center', toolbar: '#barDemo'}"></th>
     </tr>
     </thead>
 </table>
-
+<script type="text/html" id="titleTpl">
+    <img src="petImg/{{d.img}}"/>
+</script>
 <script type="text/html" id="barDemo">
     <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
     <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
