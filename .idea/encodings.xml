@@ -10,5 +10,6 @@
     <file url="file://$PROJECT_DIR$/src/com/petstore/servlet/customer/LoginServlet.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/com/petstore/servlet/customer/ModifyPwdServlet.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/com/petstore/servlet/customer/RechargeServlet.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/petstore/util/UploadDown.java" charset="GBK" />
   </component>
 </project>
